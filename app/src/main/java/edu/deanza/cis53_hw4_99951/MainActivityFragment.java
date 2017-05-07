@@ -32,11 +32,14 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String[] data = {
-            "dummy",
-            "dummy",
-            "dummy",
-            "dummy",
+        String[] data ={
+                "Monday 6/23 - Sunny",
+                "Tuesday 6/24 - Foggy",
+                "Wednesday 6/25 - Cloudy",
+                "Thursday 6/26 - Rainy",
+                "Friday 6/27 - Foggy",
+                "Saturday 6/28 - TRAPPED IN WEATHER STATION",
+                "Sunday 6/29 - Sunny"
         };
 
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
@@ -54,11 +57,11 @@ public class MainActivityFragment extends Fragment {
         return rootView;
     }
 
-    class FetchWeatherTask extends AsyncTask<String, Void, String[]>{
+    static class FetchWeatherTask extends AsyncTask<String, Void, String[]>{
 
         @Override
         protected String[] doInBackground(String... data) {
-            getWeatherData("test", "test");
+            getWeatherData(data[0], data[1]);
             return new String[0];
         }
 
@@ -88,7 +91,7 @@ public class MainActivityFragment extends Fragment {
                 final String UNITS_PARAM = "units";
                 final String DAYS_PARAM = "cnt";
                 final String APPID_PARAM = "APPID";
-                final String APPID = "XXXXXXXXXXXXXXXXXXXXXXXXXXX";
+                final String APPID = apiID;
                 Uri builtUri = Uri.parse(FORECAST_BASE_URL)
                         .buildUpon()
                         .appendQueryParameter(QUERY_PARAM, city)
@@ -133,6 +136,7 @@ public class MainActivityFragment extends Fragment {
             } finally{
                 if (urlConnection != null) {
                     urlConnection.disconnect();
+                    Log.d(MainActivity.APP_TAG, forecastJsonStr);
                 }
                 if (reader != null) {
                     try {
