@@ -91,7 +91,7 @@ public class MainActivityFragment extends Fragment {
                 final String UNITS_PARAM = "units";
                 final String DAYS_PARAM = "cnt";
                 final String APPID_PARAM = "APPID";
-                final String APPID = apiID;
+                final String APPID = apiID;             //this line was changed to the apiID
                 Uri builtUri = Uri.parse(FORECAST_BASE_URL)
                         .buildUpon()
                         .appendQueryParameter(QUERY_PARAM, city)
