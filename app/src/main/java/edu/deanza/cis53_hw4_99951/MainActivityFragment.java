@@ -66,6 +66,8 @@ public class MainActivityFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(MainActivity.APP_TAG,
+                        "onItemSelected " + mForecastAdapter.getItem(position));
              Toast.makeText(
                      getActivity().getApplicationContext(),
                      mForecastAdapter.getItem(position),
@@ -73,6 +75,7 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
+        Log.d(MainActivity.APP_TAG, "onCreateView");
         return rootView;
     }
 
@@ -84,7 +87,7 @@ public class MainActivityFragment extends Fragment {
             try {
                 resultStr = getWeatherDataFromJson(getWeatherData(data[0], data[1]), 7);
             }catch(JSONException exp) {
-                resultStr = new String[0];
+                throw new RuntimeException(exp);
             }
             return resultStr;
         }
