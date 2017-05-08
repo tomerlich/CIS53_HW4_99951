@@ -40,7 +40,7 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         String[] data ={
                 "Monday 6/23 - Sunny",
@@ -67,12 +67,6 @@ public class MainActivityFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Context context = getApplicationContext();
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
             }
         });
 
