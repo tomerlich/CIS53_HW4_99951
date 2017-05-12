@@ -85,7 +85,9 @@ public class MainActivityFragment extends Fragment {
         protected String[] doInBackground(String... data) {
             String[] resultStr;
             try {
-                resultStr = getWeatherDataFromJson(getWeatherData(data[0], data[1]), 7);
+                resultStr = getWeatherDataFromJson(
+                        getWeatherData(data[0], data[1]),
+                        Integer.parseInt(data[1]));
             }catch(JSONException exp) {
                 throw new RuntimeException(exp);
             }
